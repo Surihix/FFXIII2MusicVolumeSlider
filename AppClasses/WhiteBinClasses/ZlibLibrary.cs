@@ -1,7 +1,7 @@
 ﻿using Ionic.Zlib;
 using System.IO;
 
-namespace FFXIII2MusicVolumeSlider.ProcessBin
+namespace FFXIII2MusicVolumeSlider.WhiteBinClasses
 {
     internal class ZlibLibrary
     {

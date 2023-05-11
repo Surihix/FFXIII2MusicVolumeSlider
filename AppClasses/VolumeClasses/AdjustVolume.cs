@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace FFXIII2MusicVolumeSlider.ProcessVol
+namespace FFXIII2MusicVolumeSlider.VolumeClasses
 {
     internal class AdjustVolume
     {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 
-namespace FFXIII2MusicVolumeSlider.ProcessCmn
+namespace FFXIII2MusicVolumeSlider
 {
     internal class CmnMethods
     {

@@ -1,5 +1,4 @@
-﻿using FFXIII2MusicVolumeSlider.ProcessCmn;
-using FFXIII2MusicVolumeSlider.ProcessVol;
+﻿using FFXIII2MusicVolumeSlider.VolumeClasses;
 using System;
 using System.Diagnostics;
 using System.IO;

@@ -1,8 +1,7 @@
-﻿using FFXIII2MusicVolumeSlider.ProcessCmn;
-using System.IO;
+﻿using System.IO;
 using System.Text;
 
-namespace FFXIII2MusicVolumeSlider.ProcessBin
+namespace FFXIII2MusicVolumeSlider.WhiteBinClasses
 {
     internal class UnpackBin
     {

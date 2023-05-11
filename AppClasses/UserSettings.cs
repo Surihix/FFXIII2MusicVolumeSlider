@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace FFXIII2MusicVolumeSlider.ProcessCmn
+namespace FFXIII2MusicVolumeSlider
 {
     public class UserSettings
     {

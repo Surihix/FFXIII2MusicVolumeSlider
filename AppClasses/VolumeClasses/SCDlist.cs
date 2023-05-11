@@ -1,4 +1,4 @@
-﻿namespace FFXIII2MusicVolumeSlider.ProcessVol
+﻿namespace FFXIII2MusicVolumeSlider.VolumeClasses
 {
     internal class SCDlist
     {

@@ -1,11 +1,10 @@
-﻿using FFXIII2MusicVolumeSlider.ProcessBin;
-using FFXIII2MusicVolumeSlider.ProcessCmn;
+﻿using FFXIII2MusicVolumeSlider.WhiteBinClasses;
 using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FFXIII2MusicVolumeSlider.ProcessVol
+namespace FFXIII2MusicVolumeSlider.VolumeClasses
 {
     internal class PatchPrep
     {
@@ -56,7 +55,7 @@ namespace FFXIII2MusicVolumeSlider.ProcessVol
                 }
             }
 
-            if (!File.Exists(albaPathVar + "alba_data\\sys\\FFXIII2MusicVolumeSlider.exe") 
+            if (!File.Exists(albaPathVar + "alba_data\\sys\\FFXIII2MusicVolumeSlider.exe")
                 && File.Exists(albaPathVar + "alba_data\\sys\\ffxiiicrypt.exe"))
             {
                 CmnMethods.IfFileExistsDel(albaPathVar + "alba_data\\sys\\ffxiiicrypt.exe");
