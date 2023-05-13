@@ -80,8 +80,8 @@ namespace FFXIII2MusicVolumeSlider.VolumeClasses
             }
 
             PatchEachFile(musicDir, langCodeVar, sliderValueVar);
-            PatchEachFile(musicDir, langCodeVar, sliderValueVar);
-            PatchEachFile(musicDir, langCodeVar, sliderValueVar);
+            PatchEachFile(musicDir2, langCodeVar, sliderValueVar);
+            PatchEachFile(musicDir3, langCodeVar, sliderValueVar);
 
             PatchSucess(sliderValueVar);
         }
