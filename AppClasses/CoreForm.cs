@@ -254,6 +254,11 @@ namespace FFXIII2MusicVolumeSlider
                 else if (JpVoRadiobutton.Checked.Equals(true))
                 {
                     unpackedMusicDir1 = PathTextBox.Text + "alba_data\\sound\\pack\\8000";
+                    string[] unpackedDirCheck = Directory.GetFiles(unpackedMusicDir1, "*.scd", SearchOption.TopDirectoryOnly);
+                    if (unpackedDirCheck.Length.Equals(0))
+                    {
+                        CmnMethods.AppMsgBox("Unable to locate unpacked base game music files.\nOnly the unpacked DLC music files will be patched.", "Warning", MessageBoxIcon.Warning);
+                    }
                 }
 
                 var unpackedMusicDir2 = PathTextBox.Text + "alba_data\\sound\\pack\\8578";
