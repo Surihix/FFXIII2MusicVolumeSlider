@@ -174,7 +174,7 @@ namespace FFXIII2MusicVolumeSlider
 
         public bool FilesCheck()
         {
-            var AppFilesDict = new Dictionary<int, (string name, string hash, string type)>
+            var appFilesDict = new Dictionary<int, (string name, string hash, string type)>
             {
                 { 0, ("DotNetZip.dll", "8e9c0362e9bfb3c49af59e1b4d376d3e85b13aed0fbc3f5c0e1ebc99c07345f3", "dll" ) },
                 { 1, ("ffxiiicrypt.exe", "f9dbc8ac8b367196e449fbb78df396d15aa5f7d8d07e1e295c4435b6c1192ce3", "exe") }
@@ -183,11 +183,11 @@ namespace FFXIII2MusicVolumeSlider
             var allValid = true;
             for (int c = 0; c < 2; c++)
             {
-                if (File.Exists(AppFilesDict[c].name))
+                if (File.Exists(appFilesDict[c].name))
                 {
                     byte[] hashArray;
                     string hash;
-                    using (var checkStream = new FileStream(AppFilesDict[c].name, FileMode.Open, FileAccess.Read))
+                    using (var checkStream = new FileStream(appFilesDict[c].name, FileMode.Open, FileAccess.Read))
                     {
                         using (var fileHash256 = SHA256.Create())
                         {
@@ -195,17 +195,17 @@ namespace FFXIII2MusicVolumeSlider
                             hash = BitConverter.ToString(hashArray).Replace("-", "").ToLower();
                         }
 
-                        if (!hash.Equals(AppFilesDict[c].hash))
+                        if (!hash.Equals(appFilesDict[c].hash))
                         {
                             allValid = false;
-                            CmnMethods.AppMsgBox($"'{AppFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
+                            CmnMethods.AppMsgBox($"'{appFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
                             break;
                         }
                     }
                 }
                 else
                 {
-                    CmnMethods.AppMsgBox($"The '{AppFilesDict[c].name}' file is missing.\nPlease ensure that this {AppFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
+                    CmnMethods.AppMsgBox($"The '{appFilesDict[c].name}' file is missing.\nPlease ensure that this {appFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
                     allValid = false;
                     break;
                 }
