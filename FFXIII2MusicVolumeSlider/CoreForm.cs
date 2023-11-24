@@ -253,12 +253,6 @@ namespace FFXIII2MusicVolumeSlider
                         var filelistscrfile = albaPath + "alba_data\\sys\\filelist_scr" + langCode + ".win32.bin";
                         var whitescrFile = albaPath + "alba_data\\sys\\white_scr" + langCode + ".win32.bin";
 
-                        if (!File.Exists(PathTextBox.Text + "FFXiii2Launcher.exe"))
-                        {
-                            CmnMethods.AppMsgBox("Unable to locate the 'FFXiiilauncher.exe' file file.\nPlease check if the selected folder is a valid FINAL FANTASY XIII-2 folder.", "Error", MessageBoxIcon.Error);
-                            return;
-                        }
-
                         if (File.Exists(filelistscrfile) && File.Exists(whitescrFile))
                         {
                             try
