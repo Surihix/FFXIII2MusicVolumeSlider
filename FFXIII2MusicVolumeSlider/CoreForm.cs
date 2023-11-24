@@ -29,6 +29,7 @@ namespace FFXIII2MusicVolumeSlider
                 SliderTrackBar.Select();
 
                 CmnMethods.AppMsgBox("Please set the path of the 'FFXiii2Launcher.exe' file present in the FINAL FANTASY XIII-2 folder.", "Information", MessageBoxIcon.Information);
+                BrowseButton.Enabled = true;
             }
             else
             {
@@ -152,6 +153,10 @@ namespace FFXIII2MusicVolumeSlider
 
         public void EnableComponents()
         {
+            if (BrowseButton.Enabled.Equals(false))
+            {
+                BrowseButton.Enabled = true;
+            }
             EnVoRadiobutton.Enabled = true;
             JpVoRadiobutton.Enabled = true;
             PackedRadioButton.Enabled = true;
@@ -163,6 +168,7 @@ namespace FFXIII2MusicVolumeSlider
 
         public void DisableComponents()
         {
+            BrowseButton.Enabled = false;
             EnVoRadiobutton.Enabled = false;
             JpVoRadiobutton.Enabled = false;
             PackedRadioButton.Enabled = false;
@@ -246,6 +252,12 @@ namespace FFXIII2MusicVolumeSlider
                     {
                         var filelistscrfile = albaPath + "alba_data\\sys\\filelist_scr" + langCode + ".win32.bin";
                         var whitescrFile = albaPath + "alba_data\\sys\\white_scr" + langCode + ".win32.bin";
+
+                        if (!File.Exists(PathTextBox.Text + "FFXiii2Launcher.exe"))
+                        {
+                            CmnMethods.AppMsgBox("Unable to locate the 'FFXiiilauncher.exe' file file.\nPlease check if the selected folder is a valid FINAL FANTASY XIII-2 folder.", "Error", MessageBoxIcon.Error);
+                            return;
+                        }
 
                         if (File.Exists(filelistscrfile) && File.Exists(whitescrFile))
                         {
@@ -333,77 +345,70 @@ namespace FFXIII2MusicVolumeSlider
 
         public void SaveValuesToXml()
         {
-            if (!File.Exists(PathTextBox.Text + "FFXiii2Launcher.exe"))
+            UserSettings saveXml = new UserSettings
             {
-                CmnMethods.AppMsgBox("Unable to locate Launcher executable file.\nPlease set the correct game path.", "Error", MessageBoxIcon.Error);
-            }
-            else
+                ExePath = PathTextBox.Text
+            };
+
+            if (EnVoRadiobutton.Checked.Equals(true))
             {
-                UserSettings saveXml = new UserSettings
-                {
-                    ExePath = PathTextBox.Text
-                };
-
-                if (EnVoRadiobutton.Checked.Equals(true))
-                {
-                    saveXml.VoiceOver = "en";
-                }
-
-                if (JpVoRadiobutton.Checked.Equals(true))
-                {
-                    saveXml.VoiceOver = "jp";
-                }
-
-                if (PackedRadioButton.Checked.Equals(true))
-                {
-                    saveXml.FileSystem = "packed";
-                }
-
-                if (NovaRadioButton.Checked.Equals(true))
-                {
-                    saveXml.FileSystem = "nova";
-                }
-
-                int SliderVal = SliderTrackBar.Value;
-                switch (SliderVal)
-                {
-                    case 0:
-                        saveXml.SliderValue = 0;
-                        break;
-                    case 1:
-                        saveXml.SliderValue = 1;
-                        break;
-                    case 2:
-                        saveXml.SliderValue = 2;
-                        break;
-                    case 3:
-                        saveXml.SliderValue = 3;
-                        break;
-                    case 4:
-                        saveXml.SliderValue = 4;
-                        break;
-                    case 5:
-                        saveXml.SliderValue = 5;
-                        break;
-                    case 6:
-                        saveXml.SliderValue = 6;
-                        break;
-                    case 7:
-                        saveXml.SliderValue = 7;
-                        break;
-                    case 8:
-                        saveXml.SliderValue = 8;
-                        break;
-                    case 9:
-                        saveXml.SliderValue = 9;
-                        break;
-                    case 10:
-                        saveXml.SliderValue = 10;
-                        break;
-                }
-
-                saveXml.SaveSettings();
+                saveXml.VoiceOver = "en";
             }
+
+            if (JpVoRadiobutton.Checked.Equals(true))
+            {
+                saveXml.VoiceOver = "jp";
+            }
+
+            if (PackedRadioButton.Checked.Equals(true))
+            {
+                saveXml.FileSystem = "packed";
+            }
+
+            if (NovaRadioButton.Checked.Equals(true))
+            {
+                saveXml.FileSystem = "nova";
+            }
+
+            int SliderVal = SliderTrackBar.Value;
+            switch (SliderVal)
+            {
+                case 0:
+                    saveXml.SliderValue = 0;
+                    break;
+                case 1:
+                    saveXml.SliderValue = 1;
+                    break;
+                case 2:
+                    saveXml.SliderValue = 2;
+                    break;
+                case 3:
+                    saveXml.SliderValue = 3;
+                    break;
+                case 4:
+                    saveXml.SliderValue = 4;
+                    break;
+                case 5:
+                    saveXml.SliderValue = 5;
+                    break;
+                case 6:
+                    saveXml.SliderValue = 6;
+                    break;
+                case 7:
+                    saveXml.SliderValue = 7;
+                    break;
+                case 8:
+                    saveXml.SliderValue = 8;
+                    break;
+                case 9:
+                    saveXml.SliderValue = 9;
+                    break;
+                case 10:
+                    saveXml.SliderValue = 10;
+                    break;
+            }
+
+            saveXml.SaveSettings();
         }
 
 
