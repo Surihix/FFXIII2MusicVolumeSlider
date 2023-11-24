@@ -1,7 +1,9 @@
 ﻿using FFXIII2MusicVolumeSlider.VolumeClasses;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,12 +18,6 @@ namespace FFXIII2MusicVolumeSlider
             if (!File.Exists("AppHelp.txt"))
             {
                 CmnMethods.AppMsgBox("The 'AppHelp.txt' file is missing.\nPlease ensure that this file is present next to the app to use the Help option.", "Warning", MessageBoxIcon.Warning);
-            }
-
-            if (!File.Exists("ffxiiicrypt.exe"))
-            {
-                CmnMethods.AppMsgBox("The 'ffxiiicrypt.exe' tool is missing.\nPlease ensure that this tool is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
-                Environment.Exit(0);
             }
 
             if (!File.Exists("UserSettings.xml"))
@@ -176,6 +172,49 @@ namespace FFXIII2MusicVolumeSlider
         }
 
 
+        public bool FilesCheck()
+        {
+            var AppFilesDict = new Dictionary<int, (string name, string hash, string type)>
+            {
+                { 0, ("DotNetZip.dll", "8e9c0362e9bfb3c49af59e1b4d376d3e85b13aed0fbc3f5c0e1ebc99c07345f3", "dll" ) },
+                { 1, ("ffxiiicrypt.exe", "f9dbc8ac8b367196e449fbb78df396d15aa5f7d8d07e1e295c4435b6c1192ce3", "exe") }
+            };
+
+            var allValid = true;
+            for (int c = 0; c < 2; c++)
+            {
+                if (File.Exists(AppFilesDict[c].name))
+                {
+                    byte[] hashArray;
+                    string hash;
+                    using (var checkStream = new FileStream(AppFilesDict[c].name, FileMode.Open, FileAccess.Read))
+                    {
+                        using (var fileHash256 = SHA256.Create())
+                        {
+                            hashArray = fileHash256.ComputeHash(checkStream);
+                            hash = BitConverter.ToString(hashArray).Replace("-", "").ToLower();
+                        }
+
+                        if (!hash.Equals(AppFilesDict[c].hash))
+                        {
+                            allValid = false;
+                            CmnMethods.AppMsgBox($"'{AppFilesDict[c].name}' file is corrupt.\nPlease check if this Volume Slider program is properly downloaded.", "Error", MessageBoxIcon.Error);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    CmnMethods.AppMsgBox($"The '{AppFilesDict[c].name}' file is missing.\nPlease ensure that this {AppFilesDict[c].type} file is present next to this app's executable file.", "Error", MessageBoxIcon.Error);
+                    allValid = false;
+                    break;
+                }
+            }
+
+            return allValid;
+        }
+
+
         private void SetVolumeButton_Click(object sender, EventArgs e)
         {
             DisableComponents();
@@ -212,7 +251,16 @@ namespace FFXIII2MusicVolumeSlider
                         {
                             try
                             {
-                                PatchPrep.PackedMode(filelistscrfile, albaPath, langCode, whitescrFile, SliderVal);
+                                var allfilesValid = FilesCheck();
+
+                                if (allfilesValid)
+                                {
+                                    PatchPrep.PackedMode(filelistscrfile, albaPath, langCode, whitescrFile, SliderVal);
+                                }
+                                else
+                                {
+                                    return;
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -236,14 +284,14 @@ namespace FFXIII2MusicVolumeSlider
 
             if (NovaRadioButton.Checked.Equals(true))
             {
-                var langCode = "";
+                string[] scdListToUse = { };
                 if (EnVoRadiobutton.Checked.Equals(true))
                 {
-                    langCode = "u";
+                    scdListToUse = SCDArrays.XIII2musicArray_us;
                 }
                 if (JpVoRadiobutton.Checked.Equals(true))
                 {
-                    langCode = "c";
+                    scdListToUse = SCDArrays.XIII2musicArray_jp;
                 }
 
                 var unpackedMusicDir1 = "";
@@ -254,11 +302,6 @@ namespace FFXIII2MusicVolumeSlider
                 else if (JpVoRadiobutton.Checked.Equals(true))
                 {
                     unpackedMusicDir1 = PathTextBox.Text + "alba_data\\sound\\pack\\8000";
-                    string[] unpackedDirCheck = Directory.GetFiles(unpackedMusicDir1, "*.scd", SearchOption.TopDirectoryOnly);
-                    if (unpackedDirCheck.Length.Equals(0))
-                    {
-                        CmnMethods.AppMsgBox("Unable to locate unpacked base game music files.\nOnly the unpacked DLC music files will be patched.", "Warning", MessageBoxIcon.Warning);
-                    }
                 }
 
                 var unpackedMusicDir2 = PathTextBox.Text + "alba_data\\sound\\pack\\8578";
@@ -268,7 +311,7 @@ namespace FFXIII2MusicVolumeSlider
                 {
                     try
                     {
-                        PatchPrep.NovaMode(unpackedMusicDir1, unpackedMusicDir2, unpackedMusicDir3, langCode, SliderVal);
+                        PatchPrep.NovaMode(unpackedMusicDir1, unpackedMusicDir2, unpackedMusicDir3, scdListToUse, SliderVal);
                     }
                     catch (Exception ex)
                     {

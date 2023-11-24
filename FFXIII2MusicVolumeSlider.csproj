@@ -55,31 +55,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppClasses\AboutForm.cs">
+    <Compile Include="FFXIII2MusicVolumeSlider\AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppClasses\AboutForm.Designer.cs">
+    <Compile Include="FFXIII2MusicVolumeSlider\AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppClasses\CmnMethods.cs" />
-    <Compile Include="AppClasses\CoreForm.cs">
+    <Compile Include="FFXIII2MusicVolumeSlider\CmnMethods.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\CoreForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AppClasses\CoreForm.Designer.cs">
+    <Compile Include="FFXIII2MusicVolumeSlider\CoreForm.Designer.cs">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AppClasses\VolumeClasses\AdjustVolume.cs" />
-    <Compile Include="AppClasses\PatchPrep.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\VolumeClasses\AdjustVolume.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\PatchPrep.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\Program.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\FilelistClasses\FilelistProcesses3.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\SupportClasses\BinaryHelpers.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\SupportClasses\CmnEnums.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\FilelistClasses\FilelistProcesses1.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\FilelistClasses\FilelistProcesses2.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\SupportClasses\IOhelpers.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\UnpackTypeC.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\WhiteBinClasses\SupportClasses\ZlibFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AppClasses\VolumeClasses\SCDlist.cs" />
-    <Compile Include="AppClasses\UserSettings.cs" />
-    <Compile Include="AppClasses\WhiteBinClasses\ZlibLibrary.cs" />
-    <Compile Include="AppClasses\WhiteBinClasses\UnpackBin.cs" />
-    <EmbeddedResource Include="AppClasses\AboutForm.resx">
+    <Compile Include="FFXIII2MusicVolumeSlider\VolumeClasses\SCDArrays.cs" />
+    <Compile Include="FFXIII2MusicVolumeSlider\UserSettings.cs" />
+    <EmbeddedResource Include="FFXIII2MusicVolumeSlider\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AppClasses\CoreForm.resx">
+    <EmbeddedResource Include="FFXIII2MusicVolumeSlider\CoreForm.resx">
       <DependentUpon>CoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

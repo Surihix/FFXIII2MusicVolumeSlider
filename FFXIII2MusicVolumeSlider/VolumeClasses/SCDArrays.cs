@@ -1,8 +1,8 @@
 ﻿namespace FFXIII2MusicVolumeSlider.VolumeClasses
 {
-    internal class SCDlist
+    internal class SCDArrays
     {
-        public static readonly string[] XIII2musicList_us = new string[]
+        public static readonly string[] XIII2musicArray_us = new string[]
         {
             "0.85:music_105titarr.win32.scd",
             "0.9:music_106ofa2_b.win32.scd",
@@ -132,7 +132,7 @@
         };
 
 
-        public static readonly string[] XIII2musicList_jp = new string[]
+        public static readonly string[] XIII2musicArray_jp = new string[]
         {
             "0.85:music_105titarr.win32.scd",
             "0.9:music_106ofa2_b.win32.scd",
