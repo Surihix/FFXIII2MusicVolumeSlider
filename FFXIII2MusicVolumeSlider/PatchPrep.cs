@@ -1,11 +1,12 @@
-﻿using FFXIII2MusicVolumeSlider.WhiteBinClasses;
+﻿using FFXIII2MusicVolumeSlider.VolumeClasses;
+using FFXIII2MusicVolumeSlider.WhiteBinClasses;
 using FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses;
 using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace FFXIII2MusicVolumeSlider.VolumeClasses
+namespace FFXIII2MusicVolumeSlider
 {
     internal class PatchPrep
     {
