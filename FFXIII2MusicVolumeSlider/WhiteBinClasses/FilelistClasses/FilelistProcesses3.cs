@@ -1,5 +1,4 @@
 ﻿using FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses;
-using System;
 using System.IO;
 
 namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.FilelistClasses
@@ -31,9 +30,6 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.FilelistClasses
 
             filelistVariables.ChunkInfoSize = filelistVariables.ChunkDataSectionOffset - filelistVariables.ChunkInfoSectionOffset;
             filelistVariables.TotalChunks = filelistVariables.ChunkInfoSize / 12;
-
-            Console.WriteLine("TotalChunks: " + filelistVariables.TotalChunks);
-            Console.WriteLine("No of files: " + filelistVariables.TotalFiles + "\n");
         }
 
 

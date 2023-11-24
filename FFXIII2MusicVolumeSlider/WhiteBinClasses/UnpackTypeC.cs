@@ -8,8 +8,6 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinClasses
     {
         public static void UnpackFilelistPaths(CmnEnums.GameCodes gameCodeVar, string filelistFileVar)
         {
-            filelistFileVar.CheckFileExists("Error: Filelist file specified in the argument is missing");
-
             var filelistVariables = new FilelistProcesses();
 
             FilelistProcesses.PrepareFilelistVars(filelistVariables, filelistFileVar);
@@ -23,7 +21,7 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinClasses
             filelistVariables.DefaultChunksExtDir.IfDirExistsDel();
             Directory.CreateDirectory(filelistVariables.DefaultChunksExtDir);
 
-            outChunkFile.IfFileExistsDel();
+            CmnMethods.IfFileExistsDel(outChunkFile);
 
 
             FilelistProcesses.DecryptProcess(gameCodeVar, filelistVariables);
@@ -39,7 +37,7 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinClasses
 
             if (filelistVariables.IsEncrypted.Equals(true))
             {
-                filelistVariables.TmpDcryptFilelistFile.IfFileExistsDel();
+                CmnMethods.IfFileExistsDel(filelistVariables.TmpDcryptFilelistFile);
                 filelistVariables.MainFilelistFile = filelistFileVar;
             }
 

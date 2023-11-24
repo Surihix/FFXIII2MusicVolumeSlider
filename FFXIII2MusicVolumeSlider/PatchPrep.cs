@@ -14,7 +14,7 @@ namespace FFXIII2MusicVolumeSlider
         {
             UnpackTypeC.UnpackFilelistPaths(CmnEnums.GameCodes.ff132, filelistscrFileVar);
 
-            var filelistscrPathsFile = albaPathVar + "alba_data\\sys\\filelist_scr" + langCodeVar + ".win32.txt";
+            var filelistscrPathsFile = albaPathVar + "alba_data\\sys\\filelist_scr" + langCodeVar + ".win32.bin.txt";
 
             uint totalFileCount = (uint)File.ReadAllLines(filelistscrPathsFile).Count();
             totalFileCount -= 1;
@@ -59,13 +59,7 @@ namespace FFXIII2MusicVolumeSlider
                 }
             }
 
-            if (!File.Exists(albaPathVar + "alba_data\\sys\\FFXIII2MusicVolumeSlider.exe")
-                && File.Exists(albaPathVar + "alba_data\\sys\\ffxiiicrypt.exe"))
-            {
-                CmnMethods.IfFileExistsDel(albaPathVar + "alba_data\\sys\\ffxiiicrypt.exe");
-            }
-
-            CmnMethods.IfFileExistsDel(albaPathVar + "alba_data\\sys\\filelist_scr" + langCodeVar + ".win32.txt");
+            CmnMethods.IfFileExistsDel(filelistscrPathsFile);
 
             PatchSucess(sliderValueVar);
         }

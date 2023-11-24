@@ -20,52 +20,17 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.FilelistClasses
         public static void DecryptProcess(CmnEnums.GameCodes gameCodeVar, FilelistProcesses filelistVariables)
         {
             // Check for encryption header in the filelist file,
-            // if the game code is set to ff13-1
-            if (gameCodeVar.Equals(CmnEnums.GameCodes.ff131))
-            {
-                filelistVariables.IsEncrypted = CheckIfEncrypted(filelistVariables.MainFilelistFile);
-
-                if (filelistVariables.IsEncrypted.Equals(true))
-                {
-                    if (Directory.Exists(filelistVariables.DefaultChunksExtDir))
-                    {
-                        Directory.Delete(filelistVariables.DefaultChunksExtDir, true);
-                    }
-
-                    Console.WriteLine("Error: Detected encrypted filelist file. set the game code to '-ff132' for handling this type of filelist");
-                    IOhelpers.ErrorExit("");
-                }
-            }
-
-
-            // If the ffxiiicrypt tool does not exist in app directory, then
-            // throw a error and exit
+            // if the game code is set to ff13-2
             if (gameCodeVar.Equals(CmnEnums.GameCodes.ff132))
             {
-                filelistVariables.IsEncrypted = CheckIfEncrypted(filelistVariables.MainFilelistFile);
-
-                if (filelistVariables.IsEncrypted.Equals(true))
-                {
-                    if (!File.Exists("ffxiiicrypt.exe"))
-                    {
-                        Console.WriteLine("Error: Unable to locate ffxiiicrypt tool in the main app folder to decrypt the filelist file");
-
-                        if (Directory.Exists(filelistVariables.DefaultChunksExtDir))
-                        {
-                            Directory.Delete(filelistVariables.DefaultChunksExtDir, true);
-                        }
-
-                        IOhelpers.ErrorExit("");
-                    }
-                }
+                filelistVariables.IsEncrypted = CheckIfEncrypted(filelistVariables.MainFilelistFile);                
             }
-
 
             // If the filelist is encrypted then decrypt the filelist file
             // by first creating a temp copy of the filelist 
             if (filelistVariables.IsEncrypted.Equals(true))
             {
-                filelistVariables.TmpDcryptFilelistFile.IfFileExistsDel();
+                CmnMethods.IfFileExistsDel(filelistVariables.TmpDcryptFilelistFile);
                 File.Copy(filelistVariables.MainFilelistFile, filelistVariables.TmpDcryptFilelistFile);
 
                 var cryptFilelistCode = " filelist";
