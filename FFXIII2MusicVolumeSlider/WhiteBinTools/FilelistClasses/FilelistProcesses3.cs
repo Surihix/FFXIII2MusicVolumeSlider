@@ -1,7 +1,7 @@
-﻿using FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses;
+﻿using FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses;
 using System.IO;
 
-namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.FilelistClasses
+namespace FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses
 {
     public partial class FilelistProcesses
     {

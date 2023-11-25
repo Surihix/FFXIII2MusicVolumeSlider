@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses
+namespace FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses
 {
     public static class IOhelpers
     {

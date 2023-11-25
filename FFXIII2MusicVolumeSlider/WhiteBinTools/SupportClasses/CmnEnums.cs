@@ -1,4 +1,4 @@
-﻿namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses
+﻿namespace FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses
 {
     public class CmnEnums
     {

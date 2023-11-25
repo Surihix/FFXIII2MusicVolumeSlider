@@ -1,4 +1,4 @@
-﻿namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.FilelistClasses
+﻿namespace FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses
 {
     public partial class FilelistProcesses
     {

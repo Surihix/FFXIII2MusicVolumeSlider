@@ -1,6 +1,6 @@
 ﻿using FFXIII2MusicVolumeSlider.VolumeClasses;
-using FFXIII2MusicVolumeSlider.WhiteBinClasses;
-using FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses;
+using FFXIII2MusicVolumeSlider.WhiteBinTools;
+using FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses;
 using System;
 using System.IO;
 using System.Linq;

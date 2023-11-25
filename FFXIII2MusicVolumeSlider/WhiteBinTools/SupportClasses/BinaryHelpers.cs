@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 
-namespace FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses
+namespace FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses
 {
     public static class BinaryHelpers
     {

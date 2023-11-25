@@ -1,8 +1,8 @@
-﻿using FFXIII2MusicVolumeSlider.WhiteBinClasses.FilelistClasses;
-using FFXIII2MusicVolumeSlider.WhiteBinClasses.SupportClasses;
+﻿using FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses;
+using FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses;
 using System.IO;
 
-namespace FFXIII2MusicVolumeSlider.WhiteBinClasses
+namespace FFXIII2MusicVolumeSlider.WhiteBinTools
 {
     public class UnpackTypeC
     {
