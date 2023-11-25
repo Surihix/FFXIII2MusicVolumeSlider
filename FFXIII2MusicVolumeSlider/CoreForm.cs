@@ -290,24 +290,17 @@ namespace FFXIII2MusicVolumeSlider
 
             if (NovaRadioButton.Checked.Equals(true))
             {
+                var unpackedMusicDir1 = "";
                 string[] scdListToUse = { };
                 if (EnVoRadiobutton.Checked.Equals(true))
                 {
+                    unpackedMusicDir1 = PathTextBox.Text + "alba_data\\sound\\pack\\8000\\usa";
                     scdListToUse = SCDArrays.XIII2musicArray_us;
                 }
                 if (JpVoRadiobutton.Checked.Equals(true))
                 {
-                    scdListToUse = SCDArrays.XIII2musicArray_jp;
-                }
-
-                var unpackedMusicDir1 = "";
-                if (EnVoRadiobutton.Checked.Equals(true))
-                {
-                    unpackedMusicDir1 = PathTextBox.Text + "alba_data\\sound\\pack\\8000\\usa";
-                }
-                else if (JpVoRadiobutton.Checked.Equals(true))
-                {
                     unpackedMusicDir1 = PathTextBox.Text + "alba_data\\sound\\pack\\8000";
+                    scdListToUse = SCDArrays.XIII2musicArray_jp;
                 }
 
                 var unpackedMusicDir2 = PathTextBox.Text + "alba_data\\sound\\pack\\8578";
