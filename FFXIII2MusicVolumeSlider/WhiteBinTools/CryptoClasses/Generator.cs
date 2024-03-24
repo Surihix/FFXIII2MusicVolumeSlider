@@ -90,8 +90,6 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinTools.CryptoClasses
                 copyIndex += 8;
             }
 
-            //File.WriteAllBytes("KeysDump", xorTable);
-
             return xorTable;
         }
     }

@@ -5,9 +5,9 @@ using static FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses.CmnEnums;
 
 namespace FFXIII2MusicVolumeSlider.WhiteBinTools
 {
-    public class UnpackTypePaths
+    public class UnpackTypeChunk
     {
-        public static void UnpackFilelistPaths(GameCodes gameCode, string filelistFile)
+        public static void UnpackFilelistChunks(GameCodes gameCode, string filelistFile)
         {
             var filelistVariables = new FilelistVariables();
 

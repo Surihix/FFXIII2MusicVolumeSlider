@@ -1,6 +1,4 @@
 ﻿using FFXIII2MusicVolumeSlider.WhiteBinTools.CryptoClasses;
-using FFXIII2MusicVolumeSlider.WhiteBinTools.RepackClasses;
-using FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses;
 using System;
 using System.IO;
 using static FFXIII2MusicVolumeSlider.WhiteBinTools.SupportClasses.CmnEnums;
@@ -68,7 +66,7 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses
                         CmnMethods.IfFileExistsDel(filelistVariables.TmpDcryptFilelistFile);
                         File.Copy(filelistVariables.MainFilelistFile, filelistVariables.TmpDcryptFilelistFile);
 
-                        CryptFilelist.ProcessFilelist(CryptActions.d, filelistVariables.TmpDcryptFilelistFile);
+                        CryptFilelist.ProcessFilelist(filelistVariables.TmpDcryptFilelistFile);
                         Console.WriteLine("Finished decrypting filelist file\n");
 
                         filelistVariables.MainFilelistFile = filelistVariables.TmpDcryptFilelistFile;
@@ -115,68 +113,6 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses
             }
 
             return filesInChunkCount;
-        }
-
-
-        public static void EncryptProcess(RepackVariables repackVariables)
-        {
-            var filelistDataSize = (uint)0;
-
-            // Check filelist size if divisibile by 8
-            // and pad in null bytes if not divisible.
-            // Then write some null bytes for the size 
-            // and hash offsets
-            using (var preEncryptedfilelist = new FileStream(repackVariables.NewFilelistFile, FileMode.Append, FileAccess.Write))
-            {
-                filelistDataSize = (uint)preEncryptedfilelist.Length - 32;
-
-                if (filelistDataSize % 8 != 0)
-                {
-                    // Get remainder from the division and
-                    // reduce the remainder with 8. set that
-                    // reduced value to a variable
-                    var remainder = filelistDataSize % 8;
-                    var increaseByteAmount = 8 - remainder;
-
-                    // Increase the filelist size with the
-                    // increase byte variable from the previous step and
-                    // set this as a variable
-                    // Then get the amount of null bytes to pad by subtracting 
-                    // the new size with the filelist size
-                    var newSize = filelistDataSize + increaseByteAmount;
-                    var padNulls = newSize - filelistDataSize;
-
-                    preEncryptedfilelist.Seek((uint)preEncryptedfilelist.Length, SeekOrigin.Begin);
-                    for (int pad = 0; pad < padNulls; pad++)
-                    {
-                        preEncryptedfilelist.WriteByte(0);
-                    }
-
-                    filelistDataSize = newSize;
-                }
-
-                // Add 8 bytes for the size and hash
-                // offsets and 8 null bytes
-                preEncryptedfilelist.Seek((uint)preEncryptedfilelist.Length, SeekOrigin.Begin);
-                for (int ofs = 0; ofs < 16; ofs++)
-                {
-                    preEncryptedfilelist.WriteByte(0);
-                }
-            }
-
-            using (var filelistToEncrypt = new FileStream(repackVariables.NewFilelistFile, FileMode.Open, FileAccess.Write))
-            {
-                using (var filelistToEncryptWriter = new BinaryWriter(filelistToEncrypt))
-                {
-                    filelistToEncrypt.Seek(0, SeekOrigin.Begin);
-
-                    filelistToEncryptWriter.ExWriteBytesUInt32(16, filelistDataSize, Endianness.BigEndian);
-                    filelistToEncryptWriter.ExWriteBytesUInt32((uint)filelistToEncrypt.Length - 16, filelistDataSize, Endianness.LittleEndian);
-                }
-            }
-
-            // Encrypt the filelist file
-            CryptFilelist.ProcessFilelist(CryptActions.e, repackVariables.NewFilelistFile);
         }
     }
 }
