@@ -3,9 +3,9 @@ using System.IO;
 
 namespace FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses
 {
-    public partial class FilelistProcesses
+    public class FilelistChunksPrep
     {
-        public static void GetFilelistOffsets(BinaryReader filelistReader, FilelistProcesses filelistVariables)
+        public static void GetFilelistOffsets(BinaryReader filelistReader, FilelistVariables filelistVariables)
         {
             var readStartPositionVar = new uint();
             var adjustOffset = new uint();
@@ -33,7 +33,7 @@ namespace FFXIII2MusicVolumeSlider.WhiteBinTools.FilelistClasses
         }
 
 
-        public static void UnpackChunks(FileStream filelist, string chunkFile, FilelistProcesses filelistVariables)
+        public static void UnpackChunks(FileStream filelist, string chunkFile, FilelistVariables filelistVariables)
         {
             // Make a memorystream for holding all Chunks info
             using (var chunkInfoStream = new MemoryStream())

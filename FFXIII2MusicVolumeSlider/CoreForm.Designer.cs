@@ -216,7 +216,7 @@
             this.VersionLabel.Name = "VersionLabel";
             this.VersionLabel.Size = new System.Drawing.Size(29, 15);
             this.VersionLabel.TabIndex = 11;
-            this.VersionLabel.Text = "v1.2";
+            this.VersionLabel.Text = "v1.3";
             // 
             // TxtAbovePathBoxlabel
             // 

@@ -12,7 +12,7 @@ namespace FFXIII2MusicVolumeSlider
     {
         public static void PackedMode(string filelistscrFileVar, string albaPathVar, string langCodeVar, string whitescrFileVar, int sliderValueVar)
         {
-            UnpackTypeC.UnpackFilelistPaths(CmnEnums.GameCodes.ff132, filelistscrFileVar);
+            UnpackTypePaths.UnpackFilelistPaths(CmnEnums.GameCodes.ff132, filelistscrFileVar);
 
             var filelistscrPathsFile = albaPathVar + "alba_data\\sys\\filelist_scr" + langCodeVar + ".win32.bin.txt";
 
